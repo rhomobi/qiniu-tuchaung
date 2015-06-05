@@ -23,7 +23,7 @@ $(function() {
         domain: host,
         // downtoken_url: '/downtoken',
         // unique_names: true,
-        // save_key: true,
+        save_key: savekey,
         // x_vars: {
         //     'id': '1234',
         //     'time': function(up, file) {
@@ -69,6 +69,7 @@ $(function() {
                 var obj = eval('(' + info + ')');
                 var key = obj.key;
                 var img = '<img src="http://img.yangzhongchao.com/' + key + '">';
+                console.log(img);
                 tinyMCE.activeEditor.execCommand('mceInsertContent', 0, img);
                 console.log(key);
 
