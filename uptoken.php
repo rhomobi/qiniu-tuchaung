@@ -8,6 +8,7 @@ use Qiniu\Storage\UploadManager;
 
 $accessKey = $_GET['ak'];
 $secretKey = $_GET['sk'];
+
 $auth = new Auth($accessKey, $secretKey);
 
 $bucket = $_GET['bucket'];
