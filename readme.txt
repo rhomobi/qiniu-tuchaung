@@ -8,7 +8,7 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-七牛云存储 WordPress 插件：实现在编辑器页面上传图片至七牛服务器。
+七牛图床插件：编辑器中上传图片至七牛服务器
 
 == Description ==
 
