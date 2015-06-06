@@ -5,7 +5,7 @@
 
 
 (function($) {
-       
+
                uptokenobj = $.ajax({url:uptokenurl,async:false});
                uptoken = eval('(' + uptokenobj.responseText + ')').uptoken;
                console.log(uptoken);
@@ -34,15 +34,16 @@
                // },
                auto_start: true,
                init: {
+
                    'FilesAdded': function(up, files) {
                        // $('table').show();
                        // $('#success').hide();
-                       plupload.each(files, function(file) {
-                           // var progress = new FileProgress(file, 'fsUploadProgress');
-                           // progress.setStatus("等待...");
-                           console.log('上传中');
+                       // plupload.each(files, function(file) {
+                       //     var progress = new FileProgress(file, 'fsUploadProgress');
+                       //     progress.setStatus("等待...");
+                       //     console.log('上传中');
        
-                       });
+                       // });
                    },
                    'BeforeUpload': function(up, file) {
                        // var progress = new FileProgress(file, 'fsUploadProgress');
@@ -55,23 +56,39 @@
                        // var progress = new FileProgress(file, 'fsUploadProgress');
                        // var chunk_size = plupload.parseSize(this.getOption('chunk_size'));
                        // progress.setProgress(file.percent + "%", up.total.bytesPerSec, chunk_size);
+                       span = $('#spantxt').text(file.percent + "%");
+                       console.log(span);
        
                    },
                    'UploadComplete': function() {
                        // $('#success').show();
-                       console.log('上传成功');
+                       console.log('上传完成');
+                       span = $('#spantxt').text('上传完成');
+                       console.log(span);
        
                    },
                    'FileUploaded': function(up, file, info) {
                        // var progress = new FileProgress(file, 'fsUploadProgress');
                        // progress.setComplete(up, info);
-                       console.log('上传完成');
+                       var title = $('#title').val();
+                       console.log(title);
                        var obj = eval('(' + info + ')');
                        var key = obj.key;
-                       var img = '<img src="http://img.yangzhongchao.com/' + key + '">';
+                       if (imgurl == true) {
+                            var img = '<a><img src="http://img.yangzhongchao.com/' + key
+                                    + '" alt="' 
+                                    + title
+                                    + '"></a>';   
+                       } else {
+                             var img = '<img src="http://img.yangzhongchao.com/' + key
+                                    + '" alt="' 
+                                    + title
+                                    + '">';   
+                       }
                        console.log(img);
                        tinyMCE.activeEditor.execCommand('mceInsertContent', 0, img);
                        console.log(key);
+                       console.log('设置完成');
        
                    },
                    'Error': function(up, err, errTip) {

@@ -37,8 +37,9 @@ function register_qiniu_settings() {
 	register_setting('qiniu_options', 'qiniu_options');
 	add_settings_section('qiniu_defaults', '默认设置', 'defaults_output', 'qiniu-settings');
 	add_settings_field('host', '七牛绑定域名', 'host_output', 'qiniu-settings','qiniu_defaults');
-	add_settings_field('prefix', '前缀', 'prefix_output', 'qiniu-settings','qiniu_defaults');
+    add_settings_field('prefix', '前缀', 'prefix_output', 'qiniu-settings','qiniu_defaults');
 	add_settings_field('bucket', 'bucket', 'bucket_output', 'qiniu-settings','qiniu_defaults');
+	add_settings_field('imgurl', '图片链接到媒体', 'imgurl_output', 'qiniu-settings','qiniu_defaults');
 	add_settings_field('accesskey', 'AccessKey', 'accesskey_output', 'qiniu-settings','qiniu_defaults');
 	add_settings_field('secretkey', 'SecretKey', 'secretkey_output', 'qiniu-settings','qiniu_defaults');
 }
@@ -67,6 +68,12 @@ function secretkey_output() {
 	echo "<input id='secretkey' name='qiniu_options[secretkey]' size='50' type='text' value='{$options['secretkey']}' />";
 }
 
+function imgurl_output() {
+    $options = get_option('qiniu_options');
+    if($options['imgurl']) { $checked = ' checked="checked" '; } else { $checked = ''; }
+    echo "<input ".$checked." id='imgurl' name='qiniu_options[imgurl]' type='checkbox' />";
+    echo "<div>选择后,图片链接原始地址,不选则无链接</div>";
+}
 
 //上传窗口
 add_action('submitpost_box', 'qiniu_tuchuang_script');
@@ -87,6 +94,8 @@ function qiniu_tuchuang_style(){
 	wp_enqueue_style('qiniu_tuchuang_style', plugins_url('css/qiniu_tuchuang.css', __FILE__));
 }
 
+
+
 function qiniu_tuchuang_post_html(){
 	$options = get_option('qiniu_options');
     $host = $options['host'];
@@ -94,12 +103,16 @@ function qiniu_tuchuang_post_html(){
     $prefix = $options['prefix'];
     $accesskey = $options['accesskey'];
     $secretkey = $options['secretkey'];
+    $imgurl = $options['imgurl'];
     if (!empty($prefix)) {
     	echo '<script>savekey = true </script>';
-    }else echo '<script>savekey = false </script>';;
+    }else echo '<script>savekey = false </script>';
+    if (!empty($imgurl)) {
+        echo '<script>imgurl = true </script>';
+    }else echo '<script>imgurl = false </script>';
     echo '<script>uptokenurl=\''. plugins_url('uptoken.php', __FILE__) . '?sk='. $secretkey . '&ak=' . $accesskey . '&bucket=' . $bucket . '&prefix=' . $prefix .'\'</script>';
     echo '<script>host = \'' . $host . '\'</script>';
     echo '<div id="qiniu_tuchuang_post">';
-    echo '<div id="pickfiles" href="#" ><span>上传图片</span></div>';
+    echo '<div id="pickfiles" href="#" ><span id="spantxt">上传图片</span></div>';
 }
 ?>
