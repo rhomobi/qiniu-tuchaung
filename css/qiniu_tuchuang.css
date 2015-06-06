@@ -1,5 +1,4 @@
 #qiniu_tuchuang_post{
-
 	width:auto;
 	height:100px;
 	border:3px dashed silver;
@@ -9,6 +8,9 @@
 	color:#d3d3d3;
 	cursor:pointer;
 }
+#qiniu_tuchuang_post *{
+	cursor:pointer;
+}
 #pickfiles{
 	position: absolute;
 	display: block;
@@ -16,5 +18,4 @@
 	left:0;
 	bottom:0;
 	right:0;
-	/*cursor:pointer;*/
 }

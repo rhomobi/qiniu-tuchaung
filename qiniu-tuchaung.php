@@ -3,10 +3,10 @@ error_reporting(5);
 /*
 Plugin Name: 七牛图床
 Plugin URI:  http://www.yangzhongchao.com/works/qiniu-tuchaung/
-Description:  七牛云存储 WordPress 插件：实现在编辑器页面上传图片至七牛服务器
+Description:  七牛云图床插件：在编辑器页面上传图片至七牛服务器
 Author: 羊种草
 Author URI: http://www.yangzhongchao.com
-Version: 0.1
+Version: 0.2
 */
 
 define('PLUGIN_URL', plugins_url('', __FILE__));
@@ -67,17 +67,16 @@ function secretkey_output() {
 	echo "<input id='secretkey' name='qiniu_options[secretkey]' size='50' type='text' value='{$options['secretkey']}' />";
 }
 
-//上传窗口
-add_action('after_wp_tiny_mce', 'qiniu_tuchuang_script');
-function qiniu_tuchuang_script(){
-?>
-<script type="text/javascript" src="<?php echo plugins_url('jquery-1.9.1.min.js', __FILE__); ?>"></script>
-<script type="text/javascript" src="<?php echo plugins_url('plupload.full.min.js', __FILE__); ?>"></script>
-<script type="text/javascript" src="<?php echo plugins_url('qiniu.js', __FILE__); ?>"></script>
-<script type="text/javascript" src="<?php echo plugins_url('main.js', __FILE__); ?>"></script>
-<?php
-}
 
+//上传窗口
+add_action('submitpost_box', 'qiniu_tuchuang_script');
+function qiniu_tuchuang_script(){
+    wp_enqueue_script( 'jquery' );
+    wp_enqueue_script( 'qiniu-plupload', plugins_url('js/plupload.full.min.js', __FILE__));
+    wp_enqueue_script( 'qiniu', plugins_url('js/qiniu.js', __FILE__));
+    wp_enqueue_script( 'qiniu-main', plugins_url('js/main.js', __FILE__ ),array( 'jquery' ));
+}    
+ 
 add_action('submitpost_box', 'qiniu_tuchuang_post_box');
 function qiniu_tuchuang_post_box(){
     add_meta_box('qiniu_tuchuang_div', __('七牛图床'), 'qiniu_tuchuang_post_html', 'post', 'side');
@@ -85,7 +84,7 @@ function qiniu_tuchuang_post_box(){
 
 add_action('submitpost_box', 'qiniu_tuchuang_style');
 function qiniu_tuchuang_style(){
-	wp_enqueue_style('qiniu_tuchuang_style', plugins_url('qiniu_tuchuang.css', __FILE__));
+	wp_enqueue_style('qiniu_tuchuang_style', plugins_url('css/qiniu_tuchuang.css', __FILE__));
 }
 
 function qiniu_tuchuang_post_html(){

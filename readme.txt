@@ -48,6 +48,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 初始版本
 
+=0.2= 
+
+修改代码，使其通过wordpress.org验证
+修改文件位置
+应用更高版本plupload
+
 
 == Upgrade Notice ==
 
@@ -55,3 +61,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 功能很简单
 大概或许可能一次就完了
+
+
+= 0.1 =
+
+修改文件位置
+应用更高版本plupload
