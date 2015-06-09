@@ -36,6 +36,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 上传前要设置ak和sk还有bucket
 不要有多余的 “/”哦
 
+=自动添加的图片title,alt信息？=
+
+信息默认为文章标题，如果标题为空则为空
+
 == Screenshots ==
 
 1. 七牛图床设置
@@ -54,16 +58,26 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 修改文件位置
 应用更高版本plupload
 
+=0.3=
+
+精简代码
+自动设置图片title,alt信息
+
+
 
 == Upgrade Notice ==
 
 = 0.1 =
 
-功能很简单
-大概或许可能一次就完了
+初始版本
 
 
-= 0.1 =
+= 0.2 =
 
 修改文件位置
 应用更高版本plupload
+
+=0.3=
+
+精简代码
+设置图片title,alt信息为文章标题

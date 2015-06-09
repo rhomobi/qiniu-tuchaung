@@ -3,9 +3,7 @@
 /*global FileProgress */
 /*global hljs */
 
-
 (function($) {
-
                uptokenobj = $.ajax({url:uptokenurl,async:false});
                uptoken = eval('(' + uptokenobj.responseText + ')').uptoken;
                console.log(uptoken);
@@ -74,21 +72,23 @@
                        console.log(title);
                        var obj = eval('(' + info + ')');
                        var key = obj.key;
+                       qiniuurl = 'http://img.yangzhongchao.com/' + key
                        if (imgurl == true) {
-                            var img = '<a><img src="http://img.yangzhongchao.com/' + key
+                            var img = '<a href="' + qiniuurl + '"><img src="' + qiniuurl
+                                    + '" alt="' + title
+                                    + '" title="' + title
+                                    + '">';    
+                       } else {
+                             var img = '<img src="' + qiniuurl
                                     + '" alt="' 
                                     + title
-                                    + '"></a>';   
-                       } else {
-                             var img = '<img src="http://img.yangzhongchao.com/' + key
-                                    + '" alt="' 
+                                    + '" title="'
                                     + title
                                     + '">';   
                        }
                        console.log(img);
                        tinyMCE.activeEditor.execCommand('mceInsertContent', 0, img);
-                       console.log(key);
-                       console.log('设置完成');
+                       console.log(key+'设置完成');
        
                    },
                    'Error': function(up, err, errTip) {
