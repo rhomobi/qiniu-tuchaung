@@ -1,4 +1,4 @@
-﻿=== 七牛镜像存储 WordPress 插件 ===
+﻿=== 七牛图床 ===
 Contributors: 杨中超
 Donate link:https://qr.alipay.com/apl1u77qa7bbxv552e
 Tags: 图床,七牛,qiniu
