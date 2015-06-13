@@ -6,7 +6,7 @@ Plugin URI:  http://www.yangzhongchao.com/works/qiniu-tuchaung/
 Description:  七牛云图床插件：在编辑器页面上传图片至七牛服务器
 Author: 羊种草
 Author URI: http://www.yangzhongchao.com
-Version: 0.2
+Version: 0.4
 */
 
 define('PLUGIN_URL', plugins_url('', __FILE__));

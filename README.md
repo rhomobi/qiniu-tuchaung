@@ -18,9 +18,9 @@
 ---
 
 1. 七牛镜像存储设置
-![](http://img.yangzhongchao.com/img%202015-06-05-002.png)
+![](http://img.yangzhongchao.com/img-2015-06-13-001.png)
 2.编辑器
-![](http://img.yangzhongchao.com/img%202015-06-05-003.png)
+![](http://img.yangzhongchao.com/screenshot-2.png)
 
 ###更新日志
 ---
@@ -39,6 +39,11 @@
 精简代码
 设置图片title,alt信息为文章标题
 
+2015-6-9
+
+修复上传页面的显示问题
+更改设置页描述
+
 ###问题
 ---
 
@@ -50,6 +55,10 @@
 #####自动添加的图片title,alt信息？
 
 >信息默认为文章标题，如果标题为空则为空
+
+####为什么我上传的图片不显示？
+
+>请确定编辑器是在可视化下，文本模式不能正常添加链接
 
 
 

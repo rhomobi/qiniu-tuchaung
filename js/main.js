@@ -112,10 +112,7 @@
                             console.log(img);
                             tinyMCE.activeEditor.execCommand('mceInsertContent', 0, img);
                        };
-                       // $('table').show();
-                       // var progress = new FileProgress(err.file, 'fsUploadProgress');
-                       // progress.setError();
-                       // progress.setStatus(errTip);
+                       span = $('#spantxt').text('上传完成'); 
                    }
        
                }

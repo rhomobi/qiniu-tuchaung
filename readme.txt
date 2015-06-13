@@ -71,7 +71,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 修复上传页面的显示问题
 更改设置页描述
-
+上传图片如果存在自动添加
 
 == Upgrade Notice ==
 
@@ -94,3 +94,4 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 修复上传页面的显示问题
 更改设置页描述
+上传图片如果存在自动添加
