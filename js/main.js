@@ -3,9 +3,7 @@
 /*global FileProgress */
 /*global hljs */
 
-
 (function($) {
-
                uptokenobj = $.ajax({url:uptokenurl,async:false});
                uptoken = eval('(' + uptokenobj.responseText + ')').uptoken;
                console.log(uptoken);
@@ -15,7 +13,7 @@
                container: 'qiniu_tuchuang_post',     
                drop_element: 'qiniu_tuchuang_post',
                max_file_size: '100mb',
-               flash_swf_url: 'js/plupload/Moxie.swf',
+               flash_swf_url: 'js/Moxie.swf',
                dragdrop: true,
                chunk_size: '4mb',
                uptoken: uptoken,
@@ -57,15 +55,11 @@
                        // var chunk_size = plupload.parseSize(this.getOption('chunk_size'));
                        // progress.setProgress(file.percent + "%", up.total.bytesPerSec, chunk_size);
                        span = $('#spantxt').text(file.percent + "%");
-                       console.log(span);
        
                    },
                    'UploadComplete': function() {
-                       // $('#success').show();
                        console.log('上传完成');
-                       span = $('#spantxt').text('上传完成');
-                       console.log(span);
-       
+                       span = $('#spantxt').text('上传完成');       
                    },
                    'FileUploaded': function(up, file, info) {
                        // var progress = new FileProgress(file, 'fsUploadProgress');
@@ -74,26 +68,50 @@
                        console.log(title);
                        var obj = eval('(' + info + ')');
                        var key = obj.key;
+                       qiniuurl = 'http://img.yangzhongchao.com/' + key
                        if (imgurl == true) {
-                            var img = '<a><img src="http://img.yangzhongchao.com/' + key
+                            var img = '<a href="' + qiniuurl + '"><img src="' + qiniuurl
+                                    + '" alt="' + title
+                                    + '" title="' + title
+                                    + '">';    
+                       } else {
+                             var img = '<img src="' + qiniuurl
                                     + '" alt="' 
                                     + title
-                                    + '"></a>';   
-                       } else {
-                             var img = '<img src="http://img.yangzhongchao.com/' + key
-                                    + '" alt="' 
+                                    + '" title="'
                                     + title
                                     + '">';   
                        }
                        console.log(img);
                        tinyMCE.activeEditor.execCommand('mceInsertContent', 0, img);
-                       console.log(key);
-                       console.log('设置完成');
+                       console.log(key+'设置完成');
        
                    },
                    'Error': function(up, err, errTip) {
-                       console.log('上传错误');
-       
+                       console.log(err.file.name + '上传错误:'+ errTip);
+                       console.log('错误代码：' + err.status);
+                       var status = err.status;
+                       if (status == 614) {
+                            var title = $('#title').val();
+                            console.log(title);
+                            var key = err.file.name;
+                            qiniuurl = 'http://img.yangzhongchao.com/' + key
+                            if (imgurl == true) {
+                                 var img = '<a href="' + qiniuurl + '"><img src="' + qiniuurl
+                                         + '" alt="' + title
+                                         + '" title="' + title
+                                         + '">';    
+                            } else {
+                                  var img = '<img src="' + qiniuurl
+                                         + '" alt="' 
+                                         + title
+                                         + '" title="'
+                                         + title
+                                         + '">';   
+                            }
+                            console.log(img);
+                            tinyMCE.activeEditor.execCommand('mceInsertContent', 0, img);
+                       };
                        // $('table').show();
                        // var progress = new FileProgress(err.file, 'fsUploadProgress');
                        // progress.setError();

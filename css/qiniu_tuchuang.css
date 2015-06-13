@@ -8,9 +8,9 @@
 	color:#d3d3d3;
 	cursor:pointer;
 }
-#qiniu_tuchuang_post *{
+/*#qiniu_tuchuang_post *{
 	cursor:pointer;
-}
+}*/
 #pickfiles{
 	position: absolute;
 	display: block;
