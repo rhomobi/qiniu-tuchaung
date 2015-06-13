@@ -36,12 +36,12 @@ add_action('admin_init', 'register_qiniu_settings');
 function register_qiniu_settings() {
 	register_setting('qiniu_options', 'qiniu_options');
 	add_settings_section('qiniu_defaults', '默认设置', 'defaults_output', 'qiniu-settings');
-	add_settings_field('qiniu-tuchaung-host', '七牛绑定域名', 'host_output', 'qiniu-settings','qiniu_defaults');
-    add_settings_field('qiniu-tuchaung-hostprefix', '前缀', 'prefix_output', 'qiniu-settings','qiniu_defaults');
-	add_settings_field('qiniu-tuchaung-hostbucket', 'bucket', 'bucket_output', 'qiniu-settings','qiniu_defaults');
-	add_settings_field('qiniu-tuchaung-hostimgurl', '图片链接到媒体', 'imgurl_output', 'qiniu-settings','qiniu_defaults');
-	add_settings_field('qiniu-tuchaung-hostaccesskey', 'AccessKey', 'accesskey_output', 'qiniu-settings','qiniu_defaults');
-	add_settings_field('qiniu-tuchaung-hostsecretkey', 'SecretKey', 'secretkey_output', 'qiniu-settings','qiniu_defaults');
+	add_settings_field('host', '七牛绑定域名', 'host_output', 'qiniu-settings','qiniu_defaults');
+    add_settings_field('prefix', '前缀', 'prefix_output', 'qiniu-settings','qiniu_defaults');
+	add_settings_field('bucket', 'bucket', 'bucket_output', 'qiniu-settings','qiniu_defaults');
+	add_settings_field('imgurl', '图片链接到媒体', 'imgurl_output', 'qiniu-settings','qiniu_defaults');
+	add_settings_field('accesskey', 'AccessKey', 'accesskey_output', 'qiniu-settings','qiniu_defaults');
+	add_settings_field('secretkey', 'SecretKey', 'secretkey_output', 'qiniu-settings','qiniu_defaults');
 }
 
 function host_output() {
@@ -79,7 +79,7 @@ function imgurl_output() {
 add_action('submitpost_box', 'qiniu_tuchuang_script');
 function qiniu_tuchuang_script(){
     wp_enqueue_script( 'jquery' );
-    wp_enqueue_script( 'plupload-all' );
+    wp_enqueue_script( 'qiniu-plupload', plugins_url('js/plupload.full.min.js', __FILE__));
     wp_enqueue_script( 'qiniu', plugins_url('js/qiniu.js', __FILE__));
     wp_enqueue_script( 'qiniu-main', plugins_url('js/main.js', __FILE__ ),array( 'jquery' ));
 }    
@@ -95,6 +95,7 @@ function qiniu_tuchuang_style(){
 }
 
 
+
 function qiniu_tuchuang_post_html(){
 	$options = get_option('qiniu_options');
     $host = $options['host'];
@@ -103,15 +104,15 @@ function qiniu_tuchuang_post_html(){
     $accesskey = $options['accesskey'];
     $secretkey = $options['secretkey'];
     $imgurl = $options['imgurl'];
-    echo "<script>";
     if (!empty($prefix)) {
-        echo 'var savekey = true;';
-    }else echo 'var savekey = false;';
+    	echo '<script>savekey = true </script>';
+    }else echo '<script>savekey = false </script>';
     if (!empty($imgurl)) {
-        echo 'var imgurl = true;';
-    }else echo 'var imgurl = false;';
-    echo 'var host =\''.  $host . '\';';
-    echo 'var uptokenurl=\''. plugins_url('uptoken.php', __FILE__) . '?sk='. $secretkey . '&ak=' . $accesskey . '&bucket=' . $bucket . '&prefix=' . $prefix .'\'</script>';
-    echo '<div id="qiniu_tuchuang_post"><div id="pickfiles" href="#" ><span id="spantxt">上传图片</span></div>';
+        echo '<script>imgurl = true </script>';
+    }else echo '<script>imgurl = false </script>';
+    echo '<script>uptokenurl=\''. plugins_url('uptoken.php', __FILE__) . '?sk='. $secretkey . '&ak=' . $accesskey . '&bucket=' . $bucket . '&prefix=' . $prefix .'\'</script>';
+    echo '<script>host = \'' . $host . '\'</script>';
+    echo '<div id="qiniu_tuchuang_post">';
+    echo '<div id="pickfiles" href="#" ><span id="spantxt">上传图片</span></div>';
 }
 ?>
