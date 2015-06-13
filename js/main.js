@@ -68,7 +68,7 @@
                        console.log(title);
                        var obj = eval('(' + info + ')');
                        var key = obj.key;
-                       qiniuurl = 'http://img.yangzhongchao.com/' + key
+                       qiniuurl = host + '/' + key;
                        if (imgurl == true) {
                             var img = '<a href="' + qiniuurl + '"><img src="' + qiniuurl
                                     + '" alt="' + title
@@ -95,7 +95,7 @@
                             var title = $('#title').val();
                             console.log(title);
                             var key = err.file.name;
-                            qiniuurl = 'http://img.yangzhongchao.com/' + key
+                            qiniuurl = host + '/' + key;
                             if (imgurl == true) {
                                  var img = '<a href="' + qiniuurl + '"><img src="' + qiniuurl
                                          + '" alt="' + title
