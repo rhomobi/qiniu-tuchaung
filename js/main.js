@@ -17,7 +17,7 @@
                dragdrop: true,
                chunk_size: '4mb',
                uptoken: uptoken,
-               // uptoken_url: 'http://localhost/qiniu/uptoken/',
+               // uptoken_url: uptokenurl,
                domain: host,
                // downtoken_url: '/downtoken',
                // unique_names: true,
@@ -73,7 +73,7 @@
                             var img = '<a href="' + qiniuurl + '"><img src="' + qiniuurl
                                     + '" alt="' + title
                                     + '" title="' + title
-                                    + '">';    
+                                    + '"></a>';    
                        } else {
                              var img = '<img src="' + qiniuurl
                                     + '" alt="' 
@@ -84,8 +84,7 @@
                        }
                        console.log(img);
                        tinyMCE.activeEditor.execCommand('mceInsertContent', 0, img);
-                       console.log(key+'设置完成');
-       
+                       console.log(key+'添加完成');
                    },
                    'Error': function(up, err, errTip) {
                        console.log(err.file.name + '上传错误:'+ errTip);
@@ -100,7 +99,7 @@
                                  var img = '<a href="' + qiniuurl + '"><img src="' + qiniuurl
                                          + '" alt="' + title
                                          + '" title="' + title
-                                         + '">';    
+                                         + '"></a>';    
                             } else {
                                   var img = '<img src="' + qiniuurl
                                          + '" alt="' 
